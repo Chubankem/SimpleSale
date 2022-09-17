@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 viewEngine(app);
 initWebRoutes(app);
 
+//some comment
 connectDB();
 
 let port = process.env.PORT;
