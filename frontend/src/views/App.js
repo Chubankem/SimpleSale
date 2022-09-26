@@ -3,10 +3,14 @@ import './App.scss';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
+
+
 import Dit from '../components/test/Dit';
+import Me from '../components/test/Me';
+import May from '../components/test/May';
+import Navbar from './Navbar/Navbar';
 
 
 function App() {
@@ -14,23 +18,12 @@ function App() {
     <Router>
       <div className="App">
 
-        <nav className="navbar navbar-inverse">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <Link to='/' className='navbar-brand'>SimpleSale</Link>
-            </div>
-            <ul className="nav navbar-nav">
-              <li><Link to='/Dit'>Dit</Link></li>
-              <li><Link to='/me'>me</Link></li>
-              <li><Link to='/may'>may</Link></li>
-            </ul>
-          </div>
-        </nav>
-
+        <Navbar />
 
         <Routes>
           <Route path="/Dit" element={<Dit />} />
-
+          <Route path="/me" element={<Me />} />
+          <Route path="/may" element={<May />} />
         </Routes>
 
       </div>

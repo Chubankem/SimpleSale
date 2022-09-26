@@ -1,11 +1,11 @@
 import React from "react";
 
-class me extends React.Component {
+class Me extends React.Component {
    render() {
       return (
-         <div className="test">asdaf</div>
+         <div className="test">Me</div>
       )
    }
 }
 
-export default me;
+export default Me;
