@@ -3,11 +3,29 @@ import {
    Link,
    NavLink
 } from "react-router-dom";
-import Login from '../Login/Login';
+
 import './Navbar.scss';
+import login from '../Login/Login'
+
+
 
 class Navbar extends React.Component {
+
+   state = {
+      isLog: false
+   }
+
+   handleClickSignin = () => {
+      this.setState({
+         isLog: true
+      });
+   }
+
+
    render() {
+
+
+
       return (
          <div className='sticky-top'>
             <nav className="navbar navbar-expand-lg navbar-light bg-light ">
@@ -29,24 +47,29 @@ class Navbar extends React.Component {
                      <li className="nav-item">
                         <i className="nav-link fa-solid fa-magnifying-glass fa-2x" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
                      </li>
+                     <li className='nav-item'>
+                        <i className="nav-link fa-solid fa-bars fa-2x" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"></i>
+                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                           <li><Link className="dropdown-item" onClick={() => { this.handleClickSignin() }}>SignIn</Link></li>
+                           <li><Link className="dropdown-item" to="">SignUp</Link></li>
+                        </ul>
+                     </li>
                      {/* <li className="nav-item">
-                        <div class="dropdown">
-                           <i class="nav-link fa-solid fa-bars fa-2x" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"></i>
-                     
-                           <div class="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownMenuClickableOutside" >
+                        <div className="dropdown">
+                           <i className="nav-link fa-solid fa-bars fa-2x" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"></i>
+                           <div className="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownMenuClickableOutside" >
                               <Login />
                            </div>
-
                         </div>
                      </li> */}
-                     <li className="nav-item">
-                        <div class="dropdown" >
-                           <i class="nav-link fa-solid fa-bars fa-2x"></i>
-                           <div class="dropdown-content">
+                     {/* <li className="nav-item">
+                        <div className="dropdown" >
+                           <i className="nav-link fa-solid fa-bars fa-2x"></i>
+                           <div className="dropdown-content">
                               <Login />
                            </div>
                         </div>
-                     </li>
+                     </li> */}
 
                   </ul>
 
