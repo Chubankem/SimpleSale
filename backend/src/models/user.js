@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     telephone: DataTypes.INTEGER,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    gender: DataTypes.BOOLEAN,
+    avatar: DataTypes.BLOB('long')
   }, {
     sequelize,
     modelName: 'User',

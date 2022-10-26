@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         discount_id: DataTypes.INTEGER,
         name: DataTypes.STRING,
         desc: DataTypes.TEXT,
-        price: DataTypes.DECIMAL
+        price: DataTypes.DECIMAL,
+        image: DataTypes.BLOB('long')
     }, {
         sequelize,
         modelName: 'Product',

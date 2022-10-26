@@ -8,7 +8,8 @@ module.exports = {
       first_name: 'lorem',
       last_name: 'insum',
       telephone: '98654321',
-      email: 'qwerty@123456.com'
+      email: 'qwerty@123456.com',
+      gender: 1
     }]);
   },
 

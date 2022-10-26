@@ -26,6 +26,12 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      gender: {
+        type: Sequelize.BOOLEAN
+      },
+      avatar: {
+        type: Sequelize.BLOB('long')
+      },
     });
   },
   async down(queryInterface, Sequelize) {

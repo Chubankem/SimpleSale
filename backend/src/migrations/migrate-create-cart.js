@@ -11,6 +11,9 @@ module.exports = {
             user_id: {
                 type: Sequelize.INTEGER
             },
+            voucher_id: {
+                type: Sequelize.INTEGER
+            },
             total_price: {
                 type: Sequelize.DECIMAL
             },

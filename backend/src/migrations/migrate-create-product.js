@@ -26,6 +26,9 @@ module.exports = {
             price: {
                 type: Sequelize.DECIMAL
             },
+            avatar: {
+                type: Sequelize.BLOB('long')
+            }
         });
     },
     async down(queryInterface, Sequelize) {
