@@ -26,8 +26,8 @@ module.exports = {
             price: {
                 type: Sequelize.DECIMAL
             },
-            avatar: {
-                type: Sequelize.BLOB('long')
+            image: {
+                type: Sequelize.STRING
             }
         });
     },

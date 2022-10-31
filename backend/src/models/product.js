@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         desc: DataTypes.TEXT,
         price: DataTypes.DECIMAL,
-        image: DataTypes.BLOB('long')
+        image: DataTypes.STRING
     }, {
         sequelize,
         modelName: 'Product',

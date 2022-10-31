@@ -29,9 +29,6 @@ module.exports = {
       gender: {
         type: Sequelize.BOOLEAN
       },
-      avatar: {
-        type: Sequelize.BLOB('long')
-      },
     });
   },
   async down(queryInterface, Sequelize) {
