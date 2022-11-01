@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Category</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+
+<body>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Category Name</th>
+                <th scope="col">Description</th>
+                <th onclick="location.href='create-category'" type="button">Create</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < dataTable.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= dataTable[i].name %>
+                    </td>
+                    <td>
+                        <%= dataTable[i].desc %>
+                    </td>
+
+                    <td>
+                        <a href="/edit-category?id=<%= dataTable[i].id %>" type="button">Edit</a>
+                        <a href="/delete-category?id=<%= dataTable[i].id %>" type="button">Delete</a>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>
