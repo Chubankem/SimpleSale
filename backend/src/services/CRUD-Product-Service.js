@@ -17,7 +17,7 @@ let createNewIngredient = async (data) => {
 let getAllIngredient = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let ingredients = db.Product_ingredient.findAll({
+            let ingredients = await db.Product_ingredient.findAll({
                 raw: true,
             });
             reslove(ingredients)

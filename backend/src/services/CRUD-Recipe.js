@@ -1,13 +1,16 @@
-import db from '../models/index';
+import db, { sequelize } from '../models/index';
 
 let createNewRecipe = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            await db.Product_recipe.create({
-                product_id: data.Productid,
-                ingredient_id: data.Ingredientid,
-                ingre_amount: data.Ingreamount
-            })
+
+            let asd = data.Productid;
+
+            console.log(asd);
+
+            await sequelize.query("exec findRecipeID ?,?,?", {
+                replacements: [data.Productid, data.Ingredientid, data.Ingreamount]
+            });
             resolve('ok! work')
         } catch (e) {
             reject(e);
