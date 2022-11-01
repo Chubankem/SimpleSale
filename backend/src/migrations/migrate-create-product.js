@@ -25,9 +25,6 @@ module.exports = {
             },
             price: {
                 type: Sequelize.DECIMAL
-            },
-            image: {
-                type: Sequelize.STRING
             }
         });
     },

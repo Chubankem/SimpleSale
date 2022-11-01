@@ -81,6 +81,17 @@ let initWebRoutes = (app) => {
         router.get('/order', orderController.getListOrder);
     }
 
+    {
+        router.get('/createproduct', productController.getProDuct);
+        router.post('/post_createproduct', productController.postCreateProduct);
+
+        router.get('/get_listproduct', productController.getListProduct);
+
+        router.get('/edit_product', productController.getEditProduct);
+        router.post('/put_product', productController.putProduct);
+
+        router.get('/delete_product', productController.deleteProduct);
+    }
     return app.use("/", router);
 }
 

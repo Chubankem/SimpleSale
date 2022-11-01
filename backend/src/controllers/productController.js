@@ -4,6 +4,7 @@ import CRUDProductService from '../services/CRUD-Product-Service';
 import CRUDRecipe from '../services/CRUD-Recipe';
 import CRUDProduct from '../services/CRUDProduct';
 import CRUDCategory from '../services/CRUDCategory';
+import productService from '../services/productService';
 
 let getHomePage = async (req, res) => {
     try {
@@ -212,6 +213,63 @@ let deleteCategory = async (req, res) => {
         return res.send('not found')
     }
 }
+
+let getProDuct = async (req, res) => {
+    let categoryData = await productService.getAllCategory();
+    console.log(categoryData);
+    res.render('manage product/createproduct.ejs', {
+        dataTable: categoryData
+    });
+}
+
+let postCreateProduct = async (req, res) => {
+    let message = await productService.createNewProduct(req.body);
+    console.log(message);
+    return getListProduct(req, res);
+}
+
+let getListProduct = async (req, res) => {
+    let data = await productService.getAllProduct();
+
+    console.log(data)
+    return res.render('manage product/displayproduct.ejs', {
+        dataTable: data
+    });
+}
+
+let getEditProduct = async (req, res) => {
+    let productID = req.query.id;
+
+    if (productID) {
+        let productData = await productService.getProductInfoByID(productID);
+
+        console.log(productData);
+
+        return res.render('manage product/editproduct.ejs', {
+            productData: productData
+        });
+    } else {
+        return res.send('dit me ngu vkl');
+    }
+}
+
+let putProduct = async (req, res) => {
+    let data = req.body;
+    let allProducts = await productService.updateProduct(data);
+    return res.render('manage product/displayproduct.ejs', {
+        dataTable: allProducts
+    })
+}
+
+let deleteProduct = async (req, res) => {
+
+    let id = req.query.id;
+    if (id) {
+        await productService.deleteProductByID(id);
+        return getListProduct(req, res);
+    }
+    return getListProduct(req, res);
+}
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
@@ -246,6 +304,12 @@ module.exports = {
     displayGetCategory: displayGetCategory,
     getEditCategory: getEditCategory,
     putCategory: putCategory,
-    deleteCategory: deleteCategory
+    deleteCategory: deleteCategory,
 
+    getProDuct: getProDuct,
+    postCreateProduct: postCreateProduct,
+    getListProduct: getListProduct,
+    getEditProduct: getEditProduct,
+    putProduct: putProduct,
+    deleteProduct: deleteProduct
 }
