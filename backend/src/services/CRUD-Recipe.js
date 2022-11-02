@@ -3,11 +3,6 @@ import db, { sequelize } from '../models/index';
 let createNewRecipe = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-
-            let asd = data.Productid;
-
-            console.log(asd);
-
             await sequelize.query("exec findRecipeID ?,?,?", {
                 replacements: [data.Productid, data.Ingredientid, data.Ingreamount]
             });
@@ -23,10 +18,13 @@ let createNewRecipe = async (data) => {
 let getAllRecipe = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let recipe = db.Product_recipe.findAll({
+            let recipes = db.Product_recipe.findAll({
                 raw: true,
             });
-            reslove(recipe)
+
+
+
+            reslove(recipes)
         } catch (e) {
             reject(e)
         }

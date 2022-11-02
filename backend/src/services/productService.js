@@ -1,4 +1,4 @@
-import db from '../models/index';
+import db, { sequelize } from '../models/index';
 
 let getAllCategory = () => {
     return new Promise(async (resolve, reject) => {
@@ -41,10 +41,14 @@ let createNewProduct = (data) => {
 let getAllProduct = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let products = await db.Product.findAll({
-                raw: true,
-            });
-            resolve(products)
+            // let products = await db.Product.findAll({
+            //     raw: true,
+            // });
+
+            const products = await sequelize.query("exec getListProduct");
+            const removemeta = products[0];
+
+            resolve(removemeta)
         } catch (e) {
             reject(e)
         }
