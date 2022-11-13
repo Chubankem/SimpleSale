@@ -18,12 +18,32 @@ let getAllCategory = () => {
         }
     })
 }
+let getAllInventory = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let inventory = await db.Product_inventory.findAll({
+                raw: true
+            })
+
+            if (inventory) {
+                resolve(inventory);
+            } else {
+                resolve([]);
+            }
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+
 
 let createNewProduct = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
             await db.Product.create({
                 category_id: data.category_id,
+                inventory_id: data.inventory_id,
                 name: data.name,
                 desc: data.desc,
                 price: data.price,
@@ -31,6 +51,7 @@ let createNewProduct = (data) => {
                 discount_id: null
 
             })
+            console.log(data)
             resolve('success!');
         } catch (e) {
             reject(e);
@@ -58,17 +79,12 @@ let getAllProduct = () => {
 let getProductInfoByID = (productID) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let product = await db.Product.findOne({
-                raw: true,
-                where: { id: productID }
-            })
+            const products = await sequelize.query("exec getEditProduct ?", {
+                replacements: [productID]
+            });
+            const removemeta = products[0];
 
-            if (product) {
-                resolve(product);
-            } else {
-                resolve([]);
-            }
-
+            resolve(removemeta)
         } catch (e) {
             reject(e);
         }
@@ -119,6 +135,7 @@ let deleteProductByID = (productID) => {
 }
 module.exports = {
     getAllCategory: getAllCategory,
+    getAllInventory: getAllInventory,
     createNewProduct: createNewProduct,
     getAllProduct: getAllProduct,
     getProductInfoByID: getProductInfoByID,

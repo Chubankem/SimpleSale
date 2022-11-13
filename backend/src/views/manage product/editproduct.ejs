@@ -59,22 +59,34 @@
             <div class="col-12 mt-3">Edit product</div>
             <form action="/put_product" method="POST">
                 <div class="form-group">
+                    <label for="">Category</label>
+                    <!-- <input type="text" class="form-control" value="<%= Data1.category_id %>" name="category"> -->
+                    <select class="form-control" name="category">
+                        <% for(let i=0; i < Data2.length; i++) { %>
+                            <option value="<%= Data2[i].id %>">
+                                <%= Data2[i].name %>
+                            </option>
+                            <% } %>
+                    </select>
+
+                </div>
+                <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" class="form-control" value="<%= productData.name %>" name="name">
+                    <input type="text" class="form-control" value="<%= Data1[0].name %>" name="name">
                 </div>
 
                 <div class="form-group">
                     <label for="">Description</label>
-                    <input type="text" class="form-control" value="<%= productData.desc %>" name="[desc]">
+                    <input type="text" class="form-control" value="<%= Data1[0].desc %>" name="[desc]">
                 </div>
                 <div class="form-group">
                     <div class="form-group ">
                         <label for="">Price</label>
-                        <input type="text" class="form-control" value="<%= productData.price %>" name="price">
+                        <input type="text" class="form-control" value="<%= Data1[0].price %>" name="price">
                     </div>
                 </div>
 
-                <input type="text" name="id" value="<%= productData.id %>" hidden />
+                <input type="text" name="id" value="<%= Data1[0].id %>" hidden />
 
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>

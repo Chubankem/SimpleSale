@@ -221,7 +221,13 @@ let getProDuct = async (req, res) => {
         dataTable: categoryData
     });
 }
-
+let getProDuctInventory = async (req, res) => {
+    let inventoryData = await productService.getAllInventory();
+    console.log(inventoryData);
+    res.render('manage product/createproduct.ejs', {
+        dataTableInventory: inventoryData
+    });
+}
 let postCreateProduct = async (req, res) => {
     let message = await productService.createNewProduct(req.body);
     console.log(message);
@@ -242,12 +248,15 @@ let getEditProduct = async (req, res) => {
 
     if (productID) {
         let productData = await productService.getProductInfoByID(productID);
+        let categoryData = await productService.getAllCategory();
 
         console.log(productData);
+        console.log(categoryData);
 
         return res.render('manage product/editproduct.ejs', {
-            productData: productData
-        });
+            Data1: productData,
+            Data2: categoryData
+        })
     } else {
         return res.send('dit me ngu vkl');
     }
@@ -311,5 +320,7 @@ module.exports = {
     getListProduct: getListProduct,
     getEditProduct: getEditProduct,
     putProduct: putProduct,
-    deleteProduct: deleteProduct
+    deleteProduct: deleteProduct,
+
+    getProDuctInventory: getProDuctInventory
 }

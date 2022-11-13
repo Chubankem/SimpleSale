@@ -18,13 +18,14 @@ let createNewRecipe = async (data) => {
 let getAllRecipe = () => {
     return new Promise(async (reslove, reject) => {
         try {
-            let recipes = db.Product_recipe.findAll({
-                raw: true,
-            });
+            // let recipes = db.Product_recipe.findAll({
+            //     raw: true,
+            // });
 
+            const recipe = await sequelize.query("exec getRecipeByProductID2");
+            const removemeta = recipe[0];
 
-
-            reslove(recipes)
+            reslove(removemeta)
         } catch (e) {
             reject(e)
         }
